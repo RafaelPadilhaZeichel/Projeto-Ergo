@@ -1,6 +1,9 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  // IMPORTANTE: Troque 'Projeto-Ergo' pelo nome EXATO do seu repositório no GitHub
+  // O nome do repositório DEVE ser exato (Maiúsculas/Minúsculas importam)
   base: '/Projeto-Ergo/', 
+  build: {
+    outDir: 'docs', // <--- ISSO É O SEGREDO
+  }
 })
