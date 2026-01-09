@@ -140,33 +140,13 @@ backToTopBtn?.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// --- 7. PARALLAX EFFECT (HERO & PROJECTS) ---
+// --- 7. PARALLAX EFFECT ---
 const heroBg = query('.hero-bg-wrapper');
-const parallaxImages = queryAll('.parallax-img'); // Imagens dos projetos
-
 window.addEventListener('scroll', () => {
-    const scrollPosition = window.pageYOffset;
-    
-    // Hero Parallax
     if (heroBg) {
+        const scrollPosition = window.pageYOffset;
         heroBg.style.transform = `translateY(${scrollPosition * 0.4}px)`;
     }
-
-    // Projects Parallax (Move a imagem dentro do card)
-    parallaxImages.forEach(img => {
-        const parent = img.parentElement?.parentElement;
-        if (parent) {
-            const parentTop = parent.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
-            
-            // Se o card está visível na tela
-            if (parentTop < windowHeight && parentTop > -parent.clientHeight) {
-                // Calcula movimento suave
-                const move = (parentTop - windowHeight / 2) * 0.1;
-                img.style.transform = `translateY(${move}px) scale(1.1)`;
-            }
-        }
-    });
 });
 
 // --- 8. LIGHTBOX / MODAL DETALHADO ---
@@ -178,33 +158,28 @@ const modalCategory = document.getElementById('modalCategory');
 const modalSpecsList = document.getElementById('modalSpecsList');
 const modalContactBtn = document.getElementById('modalContactBtn');
 const closeModal = query('.close-modal');
-const projectImages = queryAll('.project-img'); // Usa a classe base da imagem
+const projectImages = queryAll('.project-img');
 
 if (modal && modalImg && modalTitle && modalDesc && modalCategory && modalSpecsList) {
     projectImages.forEach(img => {
-        // Envolve o clique no card inteiro ou botão expandir, 
-        // mas aqui usamos o parentElement (wrapper do parallax) para capturar o clique no card
-        const card = img.closest('.project-item');
-        if(card) {
-            card.addEventListener('click', () => {
-                const dataImg = img as HTMLImageElement;
-                modalImg.src = dataImg.src;
-                modalTitle.innerText = dataImg.dataset.title || 'Projeto Érgo';
-                modalDesc.innerText = dataImg.dataset.desc || 'Descrição não disponível.';
-                modalCategory.innerText = dataImg.dataset.category || 'Engenharia';
-                
-                modalSpecsList.innerHTML = '';
-                const specs = dataImg.dataset.specs?.split(';') || [];
-                specs.forEach(spec => {
-                    const li = document.createElement('li');
-                    li.innerText = spec.trim();
-                    modalSpecsList.appendChild(li);
-                });
-
-                modal.style.display = "flex";
-                document.body.style.overflow = 'hidden';
+        img.parentElement?.addEventListener('click', () => {
+            const dataImg = img as HTMLImageElement;
+            modalImg.src = dataImg.src;
+            modalTitle.innerText = dataImg.dataset.title || 'Projeto Érgo';
+            modalDesc.innerText = dataImg.dataset.desc || 'Descrição não disponível.';
+            modalCategory.innerText = dataImg.dataset.category || 'Engenharia';
+            
+            modalSpecsList.innerHTML = '';
+            const specs = dataImg.dataset.specs?.split(';') || [];
+            specs.forEach(spec => {
+                const li = document.createElement('li');
+                li.innerText = spec.trim();
+                modalSpecsList.appendChild(li);
             });
-        }
+
+            modal.style.display = "flex";
+            document.body.style.overflow = 'hidden';
+        });
     });
 
     const closeAction = () => {

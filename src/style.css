@@ -43,6 +43,17 @@ body { background-color: var(--bg-dark); color: var(--text-white); font-family: 
     opacity: 1;
 }
 
+/* SHINE EFFECT NO TEXTO (NOVO) */
+.shine-effect {
+    background: linear-gradient(to right, #FFF 20%, #FF6700 40%, #FFF 60%);
+    background-size: 200% auto;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: textShine 5s ease-in-out infinite alternate;
+}
+@keyframes textShine { to { background-position: 200% center; } }
+
 /* --- ANIMAÇÃO BLUR REVEAL (NOVO) --- */
 .reveal-blur {
     opacity: 0;
@@ -137,13 +148,11 @@ header { position: fixed; top: 0; width: 100%; background: rgba(15, 15, 16, 0.85
 .stat-suffix { color: var(--brand-orange); font-size: 2rem; font-weight: 600; }
 .stat-item p { font-family: var(--font-code); font-size: 0.85rem; color: var(--text-gray); letter-spacing: 1.5px; }
 
-/* SERVICES */
+/* SERVICES (Com efeito Glassmorphism no Hover) */
 .services-section { padding: 9rem 0; background: var(--bg-dark); position: relative; }
 .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 5rem; }
-.service-card { background: rgba(26, 26, 30, 0.6); border: 1px solid rgba(255, 255, 255, 0.05); padding: 3rem 2.5rem; transition: transform 0.4s ease, border-color 0.4s ease; position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 1.5rem; backdrop-filter: blur(5px); cursor: none; }
-.service-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: inherit; padding: 1px; background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255, 103, 0, 0.4), transparent 40%); z-index: -1; mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0; transition: opacity 0.5s; }
-.service-card:hover::before { opacity: 1; }
-.service-card:hover { transform: translateY(-5px); border-color: rgba(255, 103, 0, 0.3); }
+.service-card { background: rgba(26, 26, 30, 0.6); border: 1px solid rgba(255, 255, 255, 0.05); padding: 3rem 2.5rem; transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease; position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 1.5rem; backdrop-filter: blur(5px); cursor: none; }
+.service-card:hover { transform: translateY(-5px); border-color: rgba(255, 103, 0, 0.3); box-shadow: 0 10px 40px rgba(0,0,0,0.4); }
 .service-card i { font-size: 2.5rem; color: var(--brand-orange); transition: 0.3s; }
 .service-card:hover i { transform: scale(1.1); filter: drop-shadow(0 0 15px rgba(255, 103, 0, 0.4)); }
 .service-card h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
@@ -176,9 +185,8 @@ header { position: fixed; top: 0; width: 100%; background: rgba(15, 15, 16, 0.85
 .works-header { margin-bottom: 4rem; border-bottom: 1px solid var(--border-line); padding-bottom: 2rem; display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; }
 .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; }
 .project-item { background: var(--bg-panel); border: 1px solid var(--border-line); position: relative; overflow: hidden; cursor: none; }
-.parallax-img-wrapper { width: 100%; height: auto; aspect-ratio: 16/10; overflow: hidden; }
-.project-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.1s linear; filter: grayscale(20%); } /* Removido transition lenta para parallax */
-.project-item:hover .project-img { filter: grayscale(0%); }
+.project-img { width: 100%; height: auto; aspect-ratio: 16/10; object-fit: cover; transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); filter: grayscale(20%); }
+.project-item:hover .project-img { transform: scale(1.05); filter: grayscale(0%); }
 .project-info-hover { position: absolute; bottom: 0; left: 0; width: 100%; padding: 2rem; background: linear-gradient(to top, rgba(0,0,0,0.95), transparent); border-top: 1px solid var(--brand-orange); transform: translateY(20px); opacity: 0.9; transition: 0.4s; display: flex; flex-direction: column; }
 .project-item:hover .project-info-hover { transform: translateY(0); opacity: 1; }
 .project-sub { font-size: 0.9rem; color: var(--brand-orange); font-family: var(--font-code); margin-top: 5px; }
