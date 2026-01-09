@@ -3,21 +3,77 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <link rel="icon" type="image/svg+xml" href="vite.svg" />
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230F0F10'/%3E%3Ctext x='50' y='70' font-family='Arial' font-weight='bold' font-size='60' fill='%23FF6700' text-anchor='middle'%3EÉ%3C/text%3E%3C/svg%3E" />
     
     <title>Érgo Engenharia | Soluções Estruturais e BIM</title>
     <meta name="description" content="Especialistas em Projetos Estruturais de Alto Padrão, Concreto Protendido e Consultoria Técnica (ATP). Engenharia de precisão no Espírito Santo.">
     <meta name="theme-color" content="#FF6700">
 
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EngineeringService",
+      "name": "Érgo Engenharia",
+      "image": "https://ergoengenharia.com.br/logo.png",
+      "description": "Especialistas em Projetos Estruturais de Alto Padrão, Concreto Protendido e Consultoria Técnica (ATP).",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Espírito Santo",
+        "addressRegion": "ES",
+        "addressCountry": "BR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "-20.3155",
+        "longitude": "-40.3128"
+      },
+      "url": "https://ergoengenharia.com.br",
+      "telephone": "+5527998616636",
+      "priceRange": "$$$"
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "Por que investir em um projeto em BIM?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "O BIM garante orçamentos precisos, extração automática de quantitativos e compatibilização total entre disciplinas."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Vocês fazem a compatibilização com Arquitetura?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sim. Sobrepomos o modelo estrutural ao arquitetônico para identificar interferências e propor soluções."
+        }
+      }]
+    }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
   </head>
   <body>
 
+    <div class="reading-progress" id="readingProgress"></div>
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <div class="grid-spotlight" id="gridSpotlight"></div>
+    <div class="noise-overlay"></div>
+
     <div class="cursor-wrapper" data-cursor>
-        <i class="fa-solid fa-cube cursor-icon"></i>
+        <div class="cursor-dot"></div>
+        <div class="cursor-text">VER</div>
     </div>
 
     <div id="preloader">
@@ -26,17 +82,17 @@
             <div class="progress-container">
                 <div class="progress-bar" id="progressBar"></div>
             </div>
+            <div class="loader-text">Inicializando Sistemas...</div>
         </div>
     </div>
 
-    <div class="noise-overlay"></div>
     <div class="menu-overlay" id="menuOverlay"></div>
 
     <div class="floating-buttons">
         <button id="backToTop" class="float-btn secondary" title="Voltar ao topo">
             <i class="fa-solid fa-arrow-up"></i>
         </button>
-        <a href="https://wa.me/5527998616636?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20falar%20sobre%20um%20projeto%20estrutural." class="float-btn primary" target="_blank" title="Falar no WhatsApp">
+        <a href="https://wa.me/5527998616636?text=Ol%C3%A1!%20Estou%20no%20site%20da%20%C3%89rgo%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="float-btn primary" target="_blank" title="Falar no WhatsApp">
             <i class="fa-brands fa-whatsapp"></i>
         </a>
     </div>
@@ -55,7 +111,7 @@
                     <h4>Ficha Técnica</h4>
                     <ul id="modalSpecsList"></ul>
                 </div>
-                <a href="https://wa.me/5527998616636?text=Ol%C3%A1!%20Vi%20um%20projeto%20no%20site%20e%20gostaria%20de%20saber%20mais%20detalhes." target="_blank" class="btn btn-small" id="modalContactBtn">
+                <a href="https://wa.me/5527998616636?text=Ol%C3%A1!%20Vi%20um%20projeto%20no%20site%20e%20gostaria%20de%20saber%20detalhes." target="_blank" class="btn btn-small" id="modalContactBtn">
                     <i class="fa-brands fa-whatsapp"></i> Falar sobre este projeto
                 </a>
             </div>
@@ -76,7 +132,6 @@
                         <div class="close-menu-btn" id="closeMenuBtn"><i class="fa-solid fa-xmark"></i></div>
                         <li><a href="#home" class="scroll-link active-link">Home</a></li>
                         <li><a href="#services" class="scroll-link">Serviços</a></li>
-                        <li><a href="#process" class="scroll-link">Metodologia</a></li>
                         <li><a href="#projects" class="scroll-link">Obras</a></li>
                         <li><a href="#partners" class="scroll-link">Quem Somos</a></li>
                         <li><a href="#contact" class="scroll-link contact-btn-menu">Contato</a></li>
@@ -86,42 +141,59 @@
         </div>
     </header>
 
-    <section class="hero reveal active" id="home">
-        <div class="hero-bg-wrapper"></div>
-        <div class="container">
-            <div class="hero-content">
-                <span class="section-tag reveal-text">Engenharia de Precisão</span>
-                <h1 class="animate-text-split shine-effect">DOMÍNIO ESTRUTURAL</h1>
-                <p class="reveal-text" style="transition-delay: 0.4s;">
-                    Especialistas em Concreto Armado, Protendido e ATP. Transformamos complexidade arquitetônica em segurança estrutural.
-                </p>
-                <div class="reveal-text" style="transition-delay: 0.6s; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
-                    <a href="https://wa.me/5527998616636?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20de%20projeto." target="_blank" class="btn scroll-link magnetic-btn">Solicitar Orçamento</a>
-                    <a href="portifolio.pdf" download="Portifolio-Ergo-Engenharia.pdf" target="_blank" class="btn btn-outline">
-                        <i class="fa-solid fa-file-pdf"></i> Baixar Portfólio
-                    </a>
-                </div>
+<section class="hero reveal active" id="home">
+    <div class="hero-bg-wrapper"></div>
+    
+    <div class="hero-blueprint-grid">
+        <div class="blueprint-plane"></div>
+    </div>
+
+    <div class="floating-nodes">
+        <div class="node-item">+</div>
+        <div class="node-item">×</div>
+        <div class="node-item">+</div>
+        <div class="node-item">■</div>
+        <div class="node-item">+</div>
+    </div>
+
+    <div class="container">
+        <div class="hero-content">
+            <span class="section-tag reveal-blur">Engenharia de Precisão</span>
+            
+            <div class="glitch-wrapper">
+                <h1 class="glitch-text scramble-text" data-text="DOMÍNIO ESTRUTURAL">DOMÍNIO ESTRUTURAL</h1>
+            </div>
+
+            <p class="reveal-blur" style="transition-delay: 0.2s;">Especialistas em Concreto Armado, Protendido e ATP. Transformamos complexidade arquitetônica em segurança estrutural.
+            </p>
+            
+            <div class="reveal-blur" style="transition-delay: 0.4s; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+                <a href="https://wa.me/5527998616636?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20de%20projeto%20estrutural." target="_blank" class="btn scroll-link magnetic-btn pulse-btn">Solicitar Orçamento</a>
+                <a href="portifolio.pdf" download="Portifolio-Ergo-Engenharia.pdf" target="_blank" class="btn btn-outline">
+                    <i class="fa-solid fa-file-pdf"></i> Baixar Portfólio
+                </a>
             </div>
         </div>
-        <div class="scroll-indicator"><span>Scroll</span><i class="fa-solid fa-chevron-down"></i></div>
-    </section>
+    </div>
+    <div class="scroll-indicator"><span>Scroll</span><i class="fa-solid fa-chevron-down"></i></div>
+</section>
 
     <div class="stats-bar reveal">
         <div class="container">
             <div class="stats-grid">
-                <div class="stat-item reveal stagger-delay">
+                <div class="stat-item reveal-blur stagger-delay">
                     <h4><span class="counter" data-target="7">0</span><span class="stat-suffix">+</span></h4>
                     <p>ANOS DE MERCADO</p>
                 </div>
-                <div class="stat-item reveal stagger-delay">
+                <div class="stat-item reveal-blur stagger-delay">
                     <h4><span class="counter" data-target="260">0</span><span class="stat-suffix">k+</span></h4>
                     <p>M² PROJETADOS</p>
                 </div>
-                <div class="stat-item reveal stagger-delay">
+                <div class="stat-item reveal-blur stagger-delay">
                     <h4>BIM</h4>
                     <p>TECNOLOGIA 3D</p>
                 </div>
-                <div class="stat-item reveal stagger-delay">
+                <div class="stat-item reveal-blur stagger-delay">
                     <h4>NBR</h4>
                     <p>6118:2023</p>
                 </div>
@@ -129,58 +201,70 @@
         </div>
     </div>
 
+    <div class="marquee-strip">
+        <div class="marquee-content">
+            <span>CONCRETO ARMADO • CONCRETO PROTENDIDO • ALVENARIA ESTRUTURAL • LAJES NERVURADAS • PISOS INDUSTRIAIS • CONSULTORIA ATP • BIM •</span>
+            <span>CONCRETO ARMADO • CONCRETO PROTENDIDO • ALVENARIA ESTRUTURAL • LAJES NERVURADAS • PISOS INDUSTRIAIS • CONSULTORIA ATP • BIM •</span>
+        </div>
+    </div>
+
     <section class="services-section reveal" id="services">
-        <div class="tech-grid-bg"></div>
         <div class="container">
-            <div>
-                <span class="section-tag reveal-text">O Que Fazemos</span>
-                <h2 class="animate-text-split">Soluções Completas</h2>
-                <p style="color: var(--text-gray); max-width: 700px; margin-top: 1rem;" class="reveal-text">
+            <div style="margin-bottom: 4rem;">
+                <span class="section-tag reveal-blur">O Que Fazemos</span>
+                <h2 class="scramble-text">Soluções Completas</h2>
+                <p style="color: var(--text-gray); max-width: 700px; margin-top: 1rem;" class="reveal-blur">
                     Do projeto estrutural à avaliação técnica (ATP), garantindo economia e segurança normativa.
                 </p>
             </div>
             
-            <div class="services-grid" id="cards-container">
-                <div class="service-card reveal stagger-delay">
+            <div class="services-stack-container">
+                <div class="service-card sticky-card">
+                    <div class="card-number">01</div>
                     <i class="fa-solid fa-layer-group"></i>
-                    <div>
+                    <div class="card-content">
                         <h3>Concreto Protendido</h3>
-                        <p>Vãos maiores, lajes mais esbeltas e controle rigoroso de deformações para grandes projetos.</p>
+                        <p>Vãos maiores, lajes mais esbeltas e controle rigoroso de deformações. Ideal para otimizar garagens e grandes vãos arquitetônicos.</p>
                     </div>
                 </div>
-                <div class="service-card reveal stagger-delay">
+                <div class="service-card sticky-card">
+                    <div class="card-number">02</div>
                     <i class="fa-solid fa-magnifying-glass-chart"></i>
-                    <div>
+                    <div class="card-content">
                         <h3>ATP (Avaliação Técnica)</h3>
-                        <p>Análise crítica para garantir conformidade com a NBR 6118:2023 e segurança global da estrutura.</p>
+                        <p>Análise crítica para garantir conformidade com a NBR 6118:2023. Uma auditoria de segurança para edifícios de grande porte.</p>
                     </div>
                 </div>
-                <div class="service-card reveal stagger-delay">
+                <div class="service-card sticky-card">
+                    <div class="card-number">03</div>
                     <i class="fa-solid fa-industry"></i>
-                    <div>
+                    <div class="card-content">
                         <h3>Pisos Industriais</h3>
-                        <p>Pisos protendidos: menor espessura, sem fissuras e alta durabilidade para cargas elevadas.</p>
+                        <p>Projetos de pisos protendidos ou reforçados com fibras. Menor espessura, juntas reduzidas e alta capacidade de carga.</p>
                     </div>
                 </div>
-                <div class="service-card reveal stagger-delay">
+                <div class="service-card sticky-card">
+                    <div class="card-number">04</div>
                     <i class="fa-solid fa-cubes"></i>
-                    <div>
+                    <div class="card-content">
                         <h3>BIM & Compatibilização</h3>
-                        <p>Modelagem tridimensional que antecipa conflitos e garante precisão absoluta na obra.</p>
+                        <p>Modelagem tridimensional que antecipa conflitos. Compatibilizamos estrutura com elétrica e hidro antes da obra começar.</p>
                     </div>
                 </div>
-                <div class="service-card reveal stagger-delay">
+                <div class="service-card sticky-card">
+                    <div class="card-number">05</div>
                     <i class="fa-solid fa-building"></i>
-                    <div>
+                    <div class="card-content">
                         <h3>Lajes Especiais</h3>
-                        <p>Nervuradas, Cogumelo e Lisas. Adaptamos a solução técnica à necessidade arquitetônica.</p>
+                        <p>Nervuradas, Cogumelo e Lisas. Adaptamos a solução técnica à necessidade arquitetônica, visando economia de formas.</p>
                     </div>
                 </div>
-                <div class="service-card reveal stagger-delay">
+                <div class="service-card sticky-card">
+                    <div class="card-number">06</div>
                     <i class="fa-solid fa-helmet-safety"></i>
-                    <div>
+                    <div class="card-content">
                         <h3>Reforço Estrutural</h3>
-                        <p>Diagnóstico e intervenção técnica precisa em estruturas existentes que necessitam de recuperação.</p>
+                        <p>Diagnóstico de patologias e projeto de intervenção técnica precisa em estruturas existentes que necessitam de recuperação.</p>
                     </div>
                 </div>
             </div>
@@ -190,39 +274,26 @@
     <section class="process-section reveal" id="process">
         <div class="container">
             <div class="process-intro">
-                <span class="section-tag reveal-text">Fluxo de Trabalho</span>
-                <h2 class="animate-text-split">Metodologia Érgo</h2>
-                <p style="color: var(--text-gray); margin-top: 1rem;" class="reveal-text">Processo estruturado para eliminar imprevistos, desde o contrato até a entrega da obra.</p>
+                <span class="section-tag reveal-blur">Fluxo de Trabalho</span>
+                <h2 class="scramble-text">Metodologia Érgo</h2>
+                <p style="color: var(--text-gray); margin-top: 1rem;" class="reveal-blur">Processo estruturado para eliminar imprevistos.</p>
             </div>
-
             <div class="process-flow">
-                <div class="process-step reveal stagger-delay">
+                <div class="process-step reveal-blur stagger-delay">
                     <div class="step-icon"><i class="fa-regular fa-handshake"></i></div>
-                    <div>
-                        <h4>1. Concepção & Viabilidade</h4>
-                        <p>Atuação conjunta com o arquiteto para buscar a solução estrutural mais simples e econômica.</p>
-                    </div>
+                    <div><h4>1. Concepção</h4><p>Solução estrutural mais econômica.</p></div>
                 </div>
-                <div class="process-step reveal stagger-delay">
+                <div class="process-step reveal-blur stagger-delay">
                     <div class="step-icon"><i class="fa-solid fa-laptop-code"></i></div>
-                    <div>
-                        <h4>2. Modelagem BIM</h4>
-                        <p>Definição do modelo, pré-dimensionamento e análise de interferências no projeto preliminar.</p>
-                    </div>
+                    <div><h4>2. Modelagem BIM</h4><p>Análise de interferências 3D.</p></div>
                 </div>
-                <div class="process-step reveal stagger-delay">
+                <div class="process-step reveal-blur stagger-delay">
                     <div class="step-icon"><i class="fa-solid fa-compass-drafting"></i></div>
-                    <div>
-                        <h4>3. Detalhamento</h4>
-                        <p>Entrega completa: formas, armação de fundação, pilares, vigas e lajes com precisão executiva.</p>
-                    </div>
+                    <div><h4>3. Detalhamento</h4><p>Precisão executiva para obra.</p></div>
                 </div>
-                <div class="process-step reveal stagger-delay">
+                <div class="process-step reveal-blur stagger-delay">
                     <div class="step-icon"><i class="fa-solid fa-helmet-safety"></i></div>
-                    <div>
-                        <h4>4. Acompanhamento</h4>
-                        <p>Visitas técnicas durante a obra para assegurar a correta execução do projeto.</p>
-                    </div>
+                    <div><h4>4. Obra</h4><p>Acompanhamento técnico.</p></div>
                 </div>
             </div>
         </div>
@@ -231,67 +302,55 @@
     <section class="works reveal" id="projects">
         <div class="container">
             <div class="works-header">
-                <span class="section-tag reveal-text">Portfólio Executado</span>
-                <h2 class="animate-text-split">Nossa Assinatura</h2>
-                <a href="portifolio.pdf" download="Portifolio-Ergo-Engenharia.pdf" target="_blank" class="link-styled reveal-text">
+                <span class="section-tag reveal-blur">Portfólio Executado</span>
+                <h2 class="scramble-text">Nossa Assinatura</h2>
+                <a href="portifolio.pdf" download="Portifolio-Ergo-Engenharia.pdf" target="_blank" class="link-styled reveal-blur">
                     Ver portfólio completo (PDF) <i class="fa-solid fa-arrow-right"></i>
                 </a>
             </div>
-            
             <div class="project-grid">
-                <div class="project-item reveal">
-                    <img src="maciel-tower.jpg" class="project-img" 
-                         data-title="Edifício Maciel Tower"
-                         data-category="Residencial Multifamiliar"
-                         data-desc="Um marco na arquitetura vertical. O desafio foi vencer grandes vãos livres mantendo a esbeltez das lajes. Utilizamos concreto protendido para otimizar a estrutura e reduzir o consumo de aço."
-                         data-specs="Área: 12.000m²;Altura: 25 Pavimentos;Sistema: Laje Protendida;Local: Vila Velha/ES"
-                         onerror="this.src='https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070'">
-                    <div class="project-info-hover">
+                <div class="project-item reveal-blur" data-cursor-text="VER">
+                    <div class="project-number">01</div>
+                    <div class="project-overlay"></div>
+                    <img src="maciel-tower.jpg" class="project-img" data-title="Edifício Maciel Tower" data-category="Residencial Multifamiliar" data-desc="Um marco na arquitetura vertical. Utilização de concreto protendido." data-specs="Área: 12.000m²;Altura: 25 Pavimentos;Sistema: Laje Protendida;Local: Vila Velha/ES" onerror="this.src='https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070'">
+                    <div class="project-content">
+                        <div class="project-badge">Vila Velha / ES</div>
                         <h3>Ed. Maciel Tower</h3>
-                        <p class="project-sub">Residencial Multifamiliar</p>
-                        <i class="fa-solid fa-expand expand-icon"></i>
+                        <p class="project-cat">Residencial Multifamiliar</p>
+                        <button class="project-btn"><i class="fa-solid fa-plus"></i> Detalhes</button>
                     </div>
                 </div>
-
-                <div class="project-item reveal">
-                    <img src="fasano.jpg" class="project-img" 
-                         data-title="Edifício Fasano"
-                         data-category="Alto Padrão"
-                         data-desc="Hotelaria de luxo em Piranga. Estrutura complexa com transições de pilares para atender ao layout arquitetônico arrojado. Foco total em durabilidade e conforto acústico."
-                         data-specs="Área: 8.500m²;Fundação: Estacas Hélice;Destaque: Vigas de Transição;Local: Piranga/ES"
-                         onerror="this.src='https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070'">
-                    <div class="project-info-hover">
+                <div class="project-item reveal-blur" data-cursor-text="VER">
+                    <div class="project-number">02</div>
+                    <div class="project-overlay"></div>
+                    <img src="fasano.jpg" class="project-img" data-title="Edifício Fasano" data-category="Alto Padrão" data-desc="Hotelaria de luxo em Piranga. Estrutura complexa com transições." data-specs="Área: 8.500m²;Fundação: Estacas Hélice;Destaque: Vigas de Transição;Local: Piranga/ES" onerror="this.src='https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070'">
+                    <div class="project-content">
+                        <div class="project-badge">Piranga / ES</div>
                         <h3>Ed. Fasano</h3>
-                        <p class="project-sub">Alto Padrão - Piranga</p>
-                        <i class="fa-solid fa-expand expand-icon"></i>
+                        <p class="project-cat">Alto Padrão</p>
+                        <button class="project-btn"><i class="fa-solid fa-plus"></i> Detalhes</button>
                     </div>
                 </div>
-
-                 <div class="project-item reveal">
-                    <img src="solar-bogani.jpg" class="project-img" 
-                         data-title="Edifício Solar di Bogani"
-                         data-category="Residencial Econômico"
-                         data-desc="Otimização extrema. Projeto focado na redução de custos através do dimensionamento preciso de armaduras e formas racionalizadas, sem abrir mão da segurança normativa."
-                         data-specs="Área: 6.000m²;Sistema: Concreto Armado Convencional;Economia de Aço: 15%;Local: Serra/ES"
-                         onerror="this.src='https://images.unsplash.com/photo-1464938050520-ef2270bb8ce8?q=80&w=2074'">
-                    <div class="project-info-hover">
+                <div class="project-item reveal-blur" data-cursor-text="VER">
+                    <div class="project-number">03</div>
+                    <div class="project-overlay"></div>
+                    <img src="solar-bogani.jpg" class="project-img" data-title="Edifício Solar di Bogani" data-category="Residencial Econômico" data-desc="Otimização extrema. Foco na redução de custos." data-specs="Área: 6.000m²;Sistema: Concreto Armado Convencional;Economia de Aço: 15%;Local: Serra/ES" onerror="this.src='https://images.unsplash.com/photo-1464938050520-ef2270bb8ce8?q=80&w=2074'">
+                    <div class="project-content">
+                        <div class="project-badge">Serra / ES</div>
                         <h3>Ed. Solar di Bogani</h3>
-                        <p class="project-sub">Estrutura Otimizada</p>
-                        <i class="fa-solid fa-expand expand-icon"></i>
+                        <p class="project-cat">Estrutura Otimizada</p>
+                        <button class="project-btn"><i class="fa-solid fa-plus"></i> Detalhes</button>
                     </div>
                 </div>
-
-                 <div class="project-item reveal">
-                    <img src="piso-industrial.jpg" class="project-img" 
-                         data-title="Sede Administrativa PTX"
-                         data-category="Comercial / Industrial"
-                         data-desc="Galpão logístico e sede administrativa. Piso industrial projetado para cargas elevadas (6 ton/m²) e grandes vãos de cobertura metálica apoiada em pilares de concreto pré-moldado."
-                         data-specs="Área: 15.000m²;Piso: Concreto Reforçado com Fibras;Carga: 6 ton/m²;Local: Viana/ES"
-                         onerror="this.src='https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2070'">
-                    <div class="project-info-hover">
+                <div class="project-item reveal-blur" data-cursor-text="VER">
+                    <div class="project-number">04</div>
+                    <div class="project-overlay"></div>
+                    <img src="piso-industrial.jpg" class="project-img" data-title="Sede Administrativa PTX" data-category="Comercial / Industrial" data-desc="Galpão logístico e sede administrativa com piso industrial." data-specs="Área: 15.000m²;Piso: Concreto Reforçado com Fibras;Carga: 6 ton/m²;Local: Viana/ES" onerror="this.src='https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2070'">
+                    <div class="project-content">
+                        <div class="project-badge">Viana / ES</div>
                         <h3>Sede PTX</h3>
-                        <p class="project-sub">Comercial / Industrial</p>
-                        <i class="fa-solid fa-expand expand-icon"></i>
+                        <p class="project-cat">Comercial / Industrial</p>
+                        <button class="project-btn"><i class="fa-solid fa-plus"></i> Detalhes</button>
                     </div>
                 </div>
             </div>
@@ -302,22 +361,18 @@
         <div class="container">
             <div class="split-wrapper">
                 <div class="split-info right">
-                    <span class="section-tag reveal-text">Quem Somos</span>
-                    <h2 class="animate-text-split">Missão & Visão</h2>
+                    <span class="section-tag reveal-blur">Quem Somos</span>
+                    <h2 class="scramble-text">Liderança Técnica</h2>
                     <div class="info-box">
-                        <p class="text-desc reveal-text">
+                        <p class="text-desc reveal-blur">
                             A Érgo Engenharia é liderada pelos engenheiros <strong>Caio Montovanelli</strong>, <strong>Paulo Victor Damascena</strong> e <strong>Filipe Paiva</strong>.
                         </p>
-                        <p class="text-white-block reveal-text">
-                            <strong>Nossa Missão:</strong> Atender cada cliente de maneira única, trabalhando focados e alinhados com os mesmos objetivos.
-                        </p>
-                        <p class="text-white-block reveal-text">
-                            <strong>Nossa Visão:</strong> Ser referência em projetos estruturais, reconhecida pela eficiência e profissionalismo.
+                        <p class="text-white-block reveal-blur">
+                            <strong>Nossa Missão:</strong> Atender cada cliente de maneira única, com foco absoluto na eficiência.
                         </p>
                     </div>
                 </div>
-                
-                <div class="partners-interactive">
+                <div class="partners-interactive" data-cursor-text="CLICK">
                     <img src="outro.png" alt="Sócio Érgo" class="partner-img partner-front" style="object-position: top;">
                     <img src="paulo.png" alt="Sócio Érgo" class="partner-img partner-back" style="object-position: top;">
                     <div class="partner-hint"><i class="fa-solid fa-hand-pointer"></i> Clique para alternar</div>
@@ -328,80 +383,98 @@
 
     <section class="testimonials-section reveal" id="testimonials">
         <div class="container">
-            <span class="section-tag reveal-text">O que dizem nossos parceiros</span>
-            <h2 style="margin-bottom: 4rem;" class="animate-text-split">Opinião dos Clientes</h2>
-            
+            <span class="section-tag reveal-blur">Feedback</span>
+            <h2 style="margin-bottom: 4rem;" class="scramble-text">Parceiros & Clientes</h2>
             <div class="slider-wrapper">
                 <div class="slider-track">
-                    
                     <div class="testimonial-card">
-                        <div class="card-header">
-                            <div class="stars">
-                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                            </div>
-                            <div class="verified-badge"><i class="fa-solid fa-check-circle"></i> Verificado</div>
-                        </div>
-                        <p class="testimonial-text">"A ÉRGO foi parceira fundamental no Edifício Maracujá. Demonstraram grande atenção e comprometimento, sempre prontos a sugerir soluções viáveis."</p>
-                        <div class="testimonial-author">
-                            <div class="author-avatar"><i class="fa-solid fa-user-tie"></i></div>
-                            <div>
-                                <strong>Arq. Arthur Pessini</strong>
-                                <span>AVO Arquitetura - Vila Velha/ES</span>
-                            </div>
+                        <div class="card-header"><div class="stars">★★★★★</div><div class="verified-badge"><i class="fa-solid fa-check-circle"></i> Verificado</div></div>
+                        <p class="testimonial-text">"A ÉRGO foi parceira fundamental no Edifício Maracujá. Comprometimento total."</p>
+                        <div class="testimonial-author"><div class="author-avatar"><i class="fa-solid fa-user-tie"></i></div><div><strong>Arq. Arthur Pessini</strong><span>AVO Arquitetura</span></div></div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="card-header"><div class="stars">★★★★★</div><div class="verified-badge"><i class="fa-solid fa-check-circle"></i> Verificado</div></div>
+                        <p class="testimonial-text">"Projetos estruturais otimizados buscando a segurança e o melhor custo-benefício."</p>
+                        <div class="testimonial-author"><div class="author-avatar"><i class="fa-solid fa-helmet-safety"></i></div><div><strong>Eng. Gustavo Soares</strong><span>GS Construtora</span></div></div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="card-header"><div class="stars">★★★★★</div><div class="verified-badge"><i class="fa-solid fa-check-circle"></i> Verificado</div></div>
+                        <p class="testimonial-text">"Alto nível de profissionalismo em todas as etapas. Cada detalhe tratado com atenção."</p>
+                        <div class="testimonial-author"><div class="author-avatar"><i class="fa-solid fa-user-tie"></i></div><div><strong>Eng. Miguel M. Holz</strong><span>MM Engenharia</span></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section reveal">
+        <div class="container">
+            <span class="section-tag reveal-blur">Tira-Dúvidas</span>
+            <h2 class="scramble-text">Perguntas Frequentes</h2>
+            
+            <div class="faq-container">
+                <div class="accordion-item reveal-blur">
+                    <button class="accordion-header">
+                        <span class="accordion-num">01</span>
+                        <h3>Por que investir em um projeto em BIM?</h3>
+                        <i class="fa-solid fa-plus accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p>O BIM (Building Information Modeling) não é apenas um desenho 3D bonito; é uma construção virtual fiel. Ao contratar um projeto em BIM, você ganha:</p>
+                            <ul style="margin-top: 10px; margin-left: 20px; list-style-type: disc; color: var(--text-gray);">
+                                <li><strong>Orçamentos precisos:</strong> Extração automática de quantitativos de concreto e aço.</li>
+                                <li><strong>Zero surpresas:</strong> Compatibilização total entre estrutura, hidráulica e elétrica antes da obra começar.</li>
+                                <li><strong>Economia:</strong> Redução drástica de desperdício e retrabalho no canteiro.</li>
+                            </ul>
                         </div>
                     </div>
+                </div>
 
-                    <div class="testimonial-card">
-                        <div class="card-header">
-                            <div class="stars">
-                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                            </div>
-                            <div class="verified-badge"><i class="fa-solid fa-check-circle"></i> Verificado</div>
-                        </div>
-                        <p class="testimonial-text">"Estamos muito satisfeitos. Projetos estruturais otimizados buscando a segurança, a melhor interação com complementares e o melhor custo-benefício."</p>
-                        <div class="testimonial-author">
-                            <div class="author-avatar"><i class="fa-solid fa-helmet-safety"></i></div>
-                            <div>
-                                <strong>Eng. Gustavo Soares</strong>
-                                <span>GS Construtora - Teófilo Otoni/MG</span>
-                            </div>
+                <div class="accordion-item reveal-blur">
+                    <button class="accordion-header">
+                        <span class="accordion-num">02</span>
+                        <h3>Vocês fazem a compatibilização com Arquitetura?</h3>
+                        <i class="fa-solid fa-plus accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p><strong>Sim, é parte essencial do nosso fluxo.</strong> A estrutura deve servir à arquitetura, não atrapalhá-la.</p>
+                            <p style="margin-top: 10px;">Trabalhamos com softwares que sobrepõem nosso modelo estrutural ao projeto arquitetônico. Identificamos pilares que "nascem" no meio de salas ou vigas que atrapalham a passagem de tubulações, propondo soluções técnicas imediatas para manter a estética do projeto original.</p>
                         </div>
                     </div>
+                </div>
 
-                    <div class="testimonial-card">
-                        <div class="card-header">
-                            <div class="stars">
-                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                            </div>
-                            <div class="verified-badge"><i class="fa-solid fa-check-circle"></i> Verificado</div>
-                        </div>
-                        <p class="testimonial-text">"Alto nível de profissionalismo em todas as etapas. Desde o planejamento até a execução, cada detalhe foi tratado com extrema atenção."</p>
-                        <div class="testimonial-author">
-                            <div class="author-avatar"><i class="fa-solid fa-user-tie"></i></div>
-                            <div>
-                                <strong>Eng. Miguel M. Holz</strong>
-                                <span>MM Engenharia - Santa Maria de Jetibá/ES</span>
-                            </div>
+                <div class="accordion-item reveal-blur">
+                    <button class="accordion-header">
+                        <span class="accordion-num">03</span>
+                        <h3>O que é a ATP e quando ela é obrigatória?</h3>
+                        <i class="fa-solid fa-plus accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p>A ATP (Avaliação Técnica de Projeto) é uma auditoria de qualidade. Um escritório independente revisa os cálculos para garantir a segurança.</p>
+                            <p style="margin-top: 10px;">A norma <strong>NBR 6118:2014</strong> exige ATP para edifícios com mais de 4 pavimentos ou características complexas. Nós realizamos essa consultoria para validar projetos de terceiros, garantindo segurança jurídica e técnica para construtoras e investidores.</p>
                         </div>
                     </div>
+                </div>
 
-                    <div class="testimonial-card">
-                        <div class="card-header">
-                            <div class="stars">
-                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                            </div>
-                            <div class="verified-badge"><i class="fa-solid fa-check-circle"></i> Verificado</div>
-                        </div>
-                        <p class="testimonial-text">"A compatibilização em BIM antecipou problemas que só veríamos na obra. Economizamos tempo e material graças ao detalhamento preciso."</p>
-                        <div class="testimonial-author">
-                            <div class="author-avatar"><i class="fa-solid fa-building"></i></div>
-                            <div>
-                                <strong>Eng. Ricardo Souza</strong>
-                                <span>Construtora RS - Vitória/ES</span>
-                            </div>
+                <div class="accordion-item reveal-blur">
+                    <button class="accordion-header">
+                        <span class="accordion-num">04</span>
+                        <h3>Como funciona o atendimento fora do ES?</h3>
+                        <i class="fa-solid fa-plus accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p>A engenharia não tem fronteiras. Atendemos todo o Brasil com a mesma eficiência:</p>
+                            <ol style="margin-top: 10px; margin-left: 20px; color: var(--text-gray);">
+                                <li><strong>Reuniões Online:</strong> Alinhamento semanal via Google Meet/Teams.</li>
+                                <li><strong>Nuvem:</strong> Acesso aos projetos 24h via plataforma compartilhada.</li>
+                                <li><strong>Visitas Técnicas:</strong> Nossos engenheiros viajam para vistorias em etapas críticas (fundações, transições), garantindo que a execução siga o projeto rigorosamente.</li>
+                            </ol>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -410,35 +483,62 @@
     <section class="contact-section reveal" id="contact">
         <div class="tech-grid-bg"></div>
         <div class="container">
-            <div class="contact-grid">
-                <div>
-                    <span class="section-tag reveal-text">Contato</span>
-                    <h2 class="animate-text-split">Vamos Iniciar?</h2>
-                    <p style="color: var(--text-gray); margin-top: 1.5rem; font-size: 1.1rem;" class="reveal-text">
-                        Atendemos em todo o Espírito Santo, Minas Gerais e Bahia.
-                    </p>
-                    <div class="contact-list">
-                        <p><i class="fa-solid fa-phone"></i> (27) 99861-6636 (Caio)</p>
-                        <p><i class="fa-solid fa-phone"></i> (27) 99966-6529 (Paulo)</p>
-                        <p><i class="fa-solid fa-phone"></i> (27) 99298-0905 (Filipe)</p>
-                        <p>
-                            <a href="mailto:engenharia@ergo.eng.br">
-                                <i class="fa-solid fa-envelope"></i> engenharia@ergo.eng.br
-                            </a>
+            <span class="section-tag reveal-blur">Contato</span>
+            <h2 class="scramble-text" style="margin-bottom: 3rem;">Vamos Construir?</h2>
+    
+            <div class="contact-wrapper-new reveal-blur">
+                <div class="contact-info-side">
+                    <div>
+                        <h3 style="margin-bottom: 1rem;">Fale com a Engenharia</h3>
+                        <p style="color:var(--text-gray); margin-bottom: 2rem;">Preencha o formulário e inicie a conversa no WhatsApp.</p>
+                        
+                        <div class="contact-highlight">
+                            <p><i class="fa-solid fa-location-dot"></i> Base: Espírito Santo, BR</p>
+                        </div>
+                        <div class="contact-highlight">
+                            <p><i class="fa-solid fa-envelope"></i> engenharia@ergo.eng.br</p>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 3rem;">
+                        <p style="font-family: var(--font-code); font-size: 0.8rem; color: #666;">
+                            <span style="color: var(--brand-orange);">●</span> Disponível Seg-Sex, 08h-18h
                         </p>
                     </div>
                 </div>
-                <div class="whatsapp-card">
-                    <i class="fa-brands fa-whatsapp whatsapp-icon-large"></i>
-                    <h3>Atendimento Técnico</h3>
-                    <p style="color: var(--text-gray); margin-bottom: 2.5rem;">Fale diretamente com os engenheiros responsáveis.</p>
-                    <a href="https://wa.me/5527998616636?text=Ol%C3%A1!%20Gostaria%20de%20iniciar%20uma%20conversa%20sobre%20projetos." target="_blank" class="btn magnetic-btn" style="margin-top: 0; background: var(--brand-orange); border-color: var(--brand-orange);">Iniciar Conversa</a>
+    
+                <div class="form-side">
+                    <form id="whatsappForm">
+                        <div class="form-group">
+                            <input type="text" id="formName" class="form-input" placeholder=" " required>
+                            <label for="formName" class="form-label">Seu Nome</label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <select id="formService" class="form-select" style="color: #A1A1AA;" required onchange="this.style.color='white'">
+                                <option value="" disabled selected>Tipo de Projeto</option>
+                                <option value="Projeto Estrutural Residencial">Projeto Residencial</option>
+                                <option value="Edifício Comercial/Industrial">Edifício Comercial/Industrial</option>
+                                <option value="Consultoria Técnica (ATP)">Consultoria / ATP</option>
+                                <option value="Outros Assuntos">Outros Assuntos</option>
+                            </select>
+                        </div>
+    
+                        <div class="form-group">
+                            <textarea id="formMessage" class="form-textarea" placeholder=" " required></textarea>
+                            <label for="formMessage" class="form-label">Detalhes da obra...</label>
+                        </div>
+    
+                        <button type="submit" class="btn magnetic-btn" style="width: 100%; margin-top: 0; background: var(--brand-orange); border-color: var(--brand-orange);">
+                            <i class="fa-brands fa-whatsapp"></i> Enviar Mensagem
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer>
+    <footer id="mainFooter">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
@@ -455,8 +555,7 @@
                     </ul>
                 </div>
                 <div class="footer-contact">
-                    <h4>Endereço</h4>
-                    <p>Atuação em ES, MG e BA.</p>
+                    <h4>Social</h4>
                     <div class="footer-socials">
                         <a href="https://wa.me/5527998616636" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
                         <a href="https://www.instagram.com/eng.ergo/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
@@ -464,6 +563,7 @@
                     </div>
                 </div>
             </div>
+            
             <div class="footer-bottom">
                 <p>© 2026 Érgo Engenharia. Todos os direitos reservados.</p>
             </div>
