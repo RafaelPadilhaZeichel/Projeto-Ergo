@@ -8,6 +8,7 @@
     --text-gray: #A1A1AA;    
     --border-line: rgba(255, 255, 255, 0.08);
     
+    /* Curva de Animação Premium (Apple-like) */
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     
     --font-tech: 'Archivo', sans-serif;
@@ -30,20 +31,21 @@ html { scroll-behavior: smooth; width: 100%; scroll-padding-top: 100px; }
 body { background-color: var(--bg-dark); color: var(--text-white); font-family: var(--font-body); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; width: 100%; }
 
 /* --- NOVAS ANIMAÇÕES DE TEXTO (SPLIT) --- */
-.animate-text-split { overflow: hidden; display: flex; flex-wrap: wrap; gap: 0 0.3em; }
+.animate-text-split { overflow: hidden; display: flex; flex-wrap: wrap; gap: 0 0.3em; } /* gap para separar palavras */
 .split-char {
     display: inline-block;
-    transform: translateY(110%) skewY(10deg); /* Começa inclinado */
+    transform: translateY(110%); /* Começa escondido embaixo */
     opacity: 0;
     transition: transform 1.2s var(--ease-out-expo), opacity 1.2s ease;
     will-change: transform, opacity;
 }
+/* Quando o elemento pai ganha a classe active */
 .animate-text-split.active .split-char {
-    transform: translateY(0) skewY(0deg);
+    transform: translateY(0);
     opacity: 1;
 }
 
-/* SHINE EFFECT NO TEXTO (NOVO) */
+/* SHINE EFFECT NO TEXTO */
 .shine-effect {
     background: linear-gradient(to right, #FFF 20%, #FF6700 40%, #FFF 60%);
     background-size: 200% auto;
@@ -54,7 +56,7 @@ body { background-color: var(--bg-dark); color: var(--text-white); font-family: 
 }
 @keyframes textShine { to { background-position: 200% center; } }
 
-/* --- ANIMAÇÃO BLUR REVEAL (NOVO) --- */
+/* --- ANIMAÇÃO BLUR REVEAL --- */
 .reveal-blur {
     opacity: 0;
     transform: translateY(30px);

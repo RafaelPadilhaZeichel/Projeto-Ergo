@@ -49,7 +49,7 @@ magneticBtns.forEach((btn) => {
     });
 });
 
-// --- 3. PRELOADER & HERO REVEAL ---
+// --- 3. PRELOADER ---
 document.addEventListener("DOMContentLoaded", () => {
     const preloader = document.getElementById('preloader');
     const progressBar = document.getElementById('progressBar');
